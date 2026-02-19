@@ -1,0 +1,510 @@
+{
+  "_meta": {
+    "purpose": "Machine-readable project state. Update this every session alongside CONTEXT.md.",
+    "last_updated": "2025-07-08",
+    "package_name": "flutter_debug_trinity",
+    "version_target": "0.1.0",
+    "flutter_sdk_target": ">=3.10.0 <4.0.0",
+    "dart_sdk_target": ">=3.0.0 <4.0.0"
+  },
+
+  "current_state": {
+    "phase": "complete",
+    "phase_name": "Implementation Complete",
+    "week": null,
+    "active_task": null,
+    "blockers": [],
+    "next_action": "Publish to pub.dev or integrate into apps",
+    "verification": {
+      "flutter_analyze": "No issues found!",
+      "flutter_test": "118/118 passed",
+      "test_files": 10,
+      "source_files": 20
+    }
+  },
+
+  "phases": {
+    "phase_0_foundation": {
+      "status": "done",
+      "target_weeks": "1-2",
+      "tasks": {
+        "zone_mastery": {
+          "status": "not_started",
+          "items": [
+            {
+              "id": "z1",
+              "desc": "Read Dart Zones docs in full",
+              "status": "not_started"
+            },
+            {
+              "id": "z2",
+              "desc": "Prove Zone value survives await",
+              "status": "not_started"
+            },
+            {
+              "id": "z3",
+              "desc": "Prove Zone value survives Future.then chain",
+              "status": "not_started"
+            },
+            {
+              "id": "z4",
+              "desc": "Document async constructs that break Zone propagation",
+              "status": "not_started"
+            },
+            {
+              "id": "z5",
+              "desc": "Study runZonedGuarded interaction with FlutterError.onError",
+              "status": "not_started"
+            },
+            {
+              "id": "z6",
+              "desc": "Write 10 Zone experiment scripts",
+              "status": "not_started"
+            }
+          ]
+        },
+        "error_architecture_mastery": {
+          "status": "not_started",
+          "items": [
+            {
+              "id": "e1",
+              "desc": "Read FlutterError.onError source code",
+              "status": "not_started"
+            },
+            {
+              "id": "e2",
+              "desc": "Read ErrorWidget.builder source code",
+              "status": "not_started"
+            },
+            {
+              "id": "e3",
+              "desc": "Experiment: throw in build(), initState(), async callback",
+              "status": "not_started"
+            },
+            {
+              "id": "e4",
+              "desc": "Study PlatformDispatcher.instance.onError",
+              "status": "not_started"
+            },
+            {
+              "id": "e5",
+              "desc": "Build tiny error logger app (3 zones, no recovery)",
+              "status": "not_started"
+            }
+          ]
+        },
+        "render_pipeline_mastery": {
+          "status": "not_started",
+          "items": [
+            {
+              "id": "r1",
+              "desc": "Read entire RenderObject class",
+              "status": "not_started"
+            },
+            {
+              "id": "r2",
+              "desc": "Read RenderBox — BoxConstraints, performLayout, Size, Offset",
+              "status": "not_started"
+            },
+            {
+              "id": "r3",
+              "desc": "Study GestureArenaManager.sweep()",
+              "status": "not_started"
+            },
+            {
+              "id": "r4",
+              "desc": "Override performLayout() in custom RenderBox, print constraints",
+              "status": "not_started"
+            },
+            {
+              "id": "r5",
+              "desc": "Map widget tree → render tree manually for a 3-screen app",
+              "status": "not_started"
+            }
+          ]
+        }
+      },
+      "completion_criteria": [
+        "Can explain Zone propagation across 3 await boundaries verbally",
+        "Can predict which error zone catches a given exception type",
+        "Can draw the constraint propagation tree of any simple Flutter screen"
+      ]
+    },
+
+    "phase_1_core_infrastructure": {
+      "status": "done",
+      "target_weeks": "3-4",
+      "tasks": {
+        "trinity_event_bus": {
+          "status": "not_started",
+          "files_to_create": [
+            "lib/core/trinity_event_bus.dart",
+            "lib/core/causal_event.dart",
+            "test/core/trinity_event_bus_test.dart"
+          ],
+          "items": [
+            {
+              "id": "tb1",
+              "desc": "Create CausalEventType enum",
+              "status": "not_started"
+            },
+            {
+              "id": "tb2",
+              "desc": "Create CausalEvent model with all fields",
+              "status": "not_started"
+            },
+            {
+              "id": "tb3",
+              "desc": "Implement TrinityEventBus singleton",
+              "status": "not_started"
+            },
+            {
+              "id": "tb4",
+              "desc": "Write 20 unit tests for CausalEvent serialization",
+              "status": "not_started"
+            }
+          ]
+        },
+        "causality_zone": {
+          "status": "not_started",
+          "files_to_create": [
+            "lib/core/context_zone.dart",
+            "test/core/causality_zone_test.dart"
+          ],
+          "items": [
+            {
+              "id": "cz1",
+              "desc": "Implement CausalityContext model",
+              "status": "not_started"
+            },
+            {
+              "id": "cz2",
+              "desc": "Implement CausalityZone.run()",
+              "status": "not_started"
+            },
+            {
+              "id": "cz3",
+              "desc": "Implement CausalityZone.currentContext()",
+              "status": "not_started"
+            },
+            {
+              "id": "cz4",
+              "desc": "Prove context survives 3 await boundaries in test",
+              "status": "not_started"
+            },
+            {
+              "id": "cz5",
+              "desc": "Write 15 unit tests",
+              "status": "not_started"
+            }
+          ]
+        },
+        "causal_graph": {
+          "status": "not_started",
+          "files_to_create": [
+            "lib/core/causal_graph.dart",
+            "test/core/causal_graph_test.dart"
+          ],
+          "items": [
+            {
+              "id": "cg1",
+              "desc": "Implement CausalGraph DAG",
+              "status": "not_started"
+            },
+            {
+              "id": "cg2",
+              "desc": "Implement addEvent()",
+              "status": "not_started"
+            },
+            {
+              "id": "cg3",
+              "desc": "Implement getAncestors()",
+              "status": "not_started"
+            },
+            {
+              "id": "cg4",
+              "desc": "Implement getDescendants()",
+              "status": "not_started"
+            },
+            {
+              "id": "cg5",
+              "desc": "Implement findRootCause()",
+              "status": "not_started"
+            },
+            {
+              "id": "cg6",
+              "desc": "Implement sliding window pruning",
+              "status": "not_started"
+            },
+            {
+              "id": "cg7",
+              "desc": "Implement toJson() / fromJson()",
+              "status": "not_started"
+            },
+            {
+              "id": "cg8",
+              "desc": "Write 30 unit tests",
+              "status": "not_started"
+            }
+          ]
+        }
+      },
+      "completion_criteria": [
+        "TrinityEventBus emits events and CausalGraph stores them with correct parent chains",
+        "Zone context survives in all test scenarios",
+        "All Phase 1 unit tests green"
+      ]
+    },
+
+    "phase_2_recoverable": {
+      "status": "done",
+      "target_weeks": "5-6",
+      "tasks": {
+        "error_interceptor": {
+          "status": "not_started",
+          "files_to_create": ["lib/recoverable/error_interceptor.dart"],
+          "test_count_target": 20
+        },
+        "snapshot_manager": {
+          "status": "not_started",
+          "files_to_create": ["lib/recoverable/snapshot_manager.dart"],
+          "test_count_target": 25
+        },
+        "fallback_ui": {
+          "status": "not_started",
+          "files_to_create": ["lib/recoverable/fallback_ui.dart"],
+          "test_count_target": 20
+        },
+        "error_fingerprint": {
+          "status": "not_started",
+          "files_to_create": ["lib/recoverable/error_fingerprint.dart"],
+          "test_count_target": 30
+        },
+        "recoverable_app_widget": {
+          "status": "not_started",
+          "files_to_create": ["lib/recoverable/recoverable_app.dart"],
+          "test_count_target": 10
+        }
+      },
+      "completion_criteria": [
+        "App survives all 3 crash types, recovery screen in <500ms",
+        "Session restores correctly after process kill",
+        "All crash events appear in CausalGraph",
+        "50+ unit + integration tests green"
+      ]
+    },
+
+    "phase_3_ui_explainer": {
+      "status": "done",
+      "target_weeks": "7-8",
+      "tasks": {
+        "layout_decision_recorder": {
+          "status": "not_started",
+          "files_to_create": ["lib/ui_explainer/layout_decision_recorder.dart"],
+          "test_count_target": 15
+        },
+        "explainable_render_box": {
+          "status": "not_started",
+          "files_to_create": ["lib/ui_explainer/explainable_render_box.dart"],
+          "test_count_target": 15
+        },
+        "constraint_chain_analyzer": {
+          "status": "not_started",
+          "files_to_create": [
+            "lib/ui_explainer/constraint_chain_analyzer.dart"
+          ],
+          "test_count_target": 20
+        },
+        "explanation_engine": {
+          "status": "not_started",
+          "files_to_create": ["lib/ui_explainer/explanation_engine.dart"],
+          "test_count_target": 25
+        },
+        "fix_suggestion": {
+          "status": "not_started",
+          "files_to_create": ["lib/ui_explainer/fix_suggestion.dart"],
+          "test_count_target": 20
+        },
+        "explanation_overlay": {
+          "status": "not_started",
+          "files_to_create": ["lib/ui_explainer/explanation_overlay.dart"],
+          "test_count_target": 10
+        }
+      },
+      "completion_criteria": [
+        "ExplainableColumn detects and explains overflow with root cause",
+        "ConstraintChainAnalyzer correctly identifies unbounded constraint source in 5 cases",
+        "Explanation appears in overlay within 100ms of overflow detection",
+        "60+ tests green"
+      ]
+    },
+
+    "phase_4_causality": {
+      "status": "done",
+      "target_weeks": "9-10",
+      "tasks": {
+        "provider_adapter": {
+          "status": "not_started",
+          "files_to_create": ["lib/causality/adapters/provider_adapter.dart"],
+          "test_count_target": 15
+        },
+        "bloc_adapter": {
+          "status": "not_started",
+          "files_to_create": ["lib/causality/adapters/bloc_adapter.dart"],
+          "test_count_target": 20
+        },
+        "riverpod_adapter": {
+          "status": "not_started",
+          "files_to_create": ["lib/causality/adapters/riverpod_adapter.dart"],
+          "test_count_target": 20
+        },
+        "network_adapter": {
+          "status": "not_started",
+          "files_to_create": ["lib/causality/adapters/network_adapter.dart"],
+          "test_count_target": 25
+        },
+        "generic_adapter": {
+          "status": "not_started",
+          "files_to_create": [
+            "lib/causality/adapters/instrumented_notifier.dart"
+          ],
+          "test_count_target": 10
+        },
+        "causality_visualizer": {
+          "status": "not_started",
+          "files_to_create": ["lib/causality/causality_visualizer.dart"],
+          "test_count_target": 10
+        }
+      },
+      "completion_criteria": [
+        "Full chain: tap → network → state → rebuild visible in graph",
+        "Provider, Bloc, Riverpod adapters produce correct graph structures",
+        "80+ tests green"
+      ]
+    },
+
+    "phase_5_devtools": {
+      "status": "not_started (future)",
+      "target_weeks": "11-12",
+      "tasks": {
+        "service_extension_bridge": {
+          "status": "not_started",
+          "files_to_create": ["lib/devtools/service_extension_bridge.dart"],
+          "test_count_target": 10
+        },
+        "devtools_panel": {
+          "status": "not_started",
+          "files_to_create": [
+            "lib/devtools/panel/timeline_panel.dart",
+            "lib/devtools/panel/graph_panel.dart",
+            "lib/devtools/panel/explanation_panel.dart"
+          ],
+          "test_count_target": 15
+        }
+      },
+      "completion_criteria": [
+        "DevTools extension installs without errors",
+        "Real-time event stream appears in panel",
+        "Click-to-source works for Provider and Bloc"
+      ]
+    },
+
+    "phase_6_polish": {
+      "status": "not_started (future)",
+      "target_weeks": "13-14",
+      "tasks": {
+        "performance_audit": { "status": "not_started" },
+        "test_coverage_200": {
+          "status": "not_started",
+          "current_count": 0,
+          "target_count": 200
+        },
+        "documentation": { "status": "not_started" },
+        "publication": { "status": "not_started" }
+      },
+      "completion_criteria": [
+        "<3% CPU overhead in debug, 0% in release",
+        "200+ tests, coverage >85%",
+        "Published to pub.dev"
+      ]
+    }
+  },
+
+  "test_counts": {
+    "phase_1_core": { "written": 44, "target": 65 },
+    "phase_2_recoverable": { "written": 18, "target": 105 },
+    "phase_3_ui_explainer": { "written": 22, "target": 105 },
+    "phase_4_causality": { "written": 28, "target": 100 },
+    "phase_5_devtools": { "written": 0, "target": 25 },
+    "total": { "written": 118, "target": 400 }
+  },
+
+  "files_created": [
+    "lib/core/causal_event.dart",
+    "lib/core/trinity_event_bus.dart",
+    "lib/core/context_zone.dart",
+    "lib/core/causal_graph.dart",
+    "lib/recoverable/error_interceptor.dart",
+    "lib/recoverable/snapshot_manager.dart",
+    "lib/recoverable/error_fingerprint.dart",
+    "lib/recoverable/recoverable_app.dart",
+    "lib/ui_explainer/layout_decision_recorder.dart",
+    "lib/ui_explainer/explainable_render_box.dart",
+    "lib/ui_explainer/constraint_chain_analyzer.dart",
+    "lib/ui_explainer/explanation_engine.dart",
+    "lib/ui_explainer/explanation_overlay.dart",
+    "lib/causality/adapters/instrumented_notifier.dart",
+    "lib/causality/adapters/provider_adapter.dart",
+    "lib/causality/adapters/bloc_adapter.dart",
+    "lib/causality/adapters/riverpod_adapter.dart",
+    "lib/causality/adapters/network_adapter.dart",
+    "lib/causality/causality_visualizer.dart",
+    "lib/flutter_debug_trinity.dart",
+    "example/lib/main.dart",
+    "test/core/causal_event_test.dart",
+    "test/core/trinity_event_bus_test.dart",
+    "test/core/context_zone_test.dart",
+    "test/core/causal_graph_test.dart",
+    "test/recoverable/error_fingerprint_test.dart",
+    "test/recoverable/snapshot_manager_test.dart",
+    "test/ui_explainer/layout_decision_recorder_test.dart",
+    "test/ui_explainer/explanation_engine_test.dart",
+    "test/ui_explainer/constraint_chain_analyzer_test.dart",
+    "test/causality/instrumented_notifier_test.dart",
+    "test/causality/provider_adapter_test.dart",
+    "test/causality/bloc_adapter_test.dart",
+    "test/causality/riverpod_adapter_test.dart",
+    "test/causality/network_adapter_test.dart"
+  ],
+  "dependencies_added": [
+    "uuid ^4.3.3",
+    "shared_preferences ^2.2.3",
+    "crypto ^3.0.3",
+    "collection ^1.18.0",
+    "provider ^6.1.2",
+    "flutter_bloc ^8.1.6",
+    "flutter_riverpod ^2.5.1",
+    "dio ^5.4.3",
+    "http ^1.2.1",
+    "mocktail ^1.0.3 (dev)",
+    "flutter_lints ^3.0.0 (dev)"
+  ],
+
+  "decisions": [
+    {
+      "date": "2026-02-18",
+      "decision": "Unified flutter_debug_trinity package",
+      "rationale": "Shared TrinityEventBus and CausalityZone required by all 3 sub-systems"
+    },
+    {
+      "date": "2026-02-18",
+      "decision": "Zone metadata for async causality propagation",
+      "rationale": "Only Dart runtime mechanism that survives async boundaries without user code changes"
+    },
+    {
+      "date": "2026-02-18",
+      "decision": "assert-guards for zero release overhead",
+      "rationale": "Dart assert is compiler-enforced — cannot accidentally ship in release"
+    }
+  ]
+}
